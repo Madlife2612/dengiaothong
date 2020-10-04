@@ -1,3 +1,4 @@
+let Yellow = 0
 function RED () {
     pins.digitalWritePin(DigitalPin.P1, 0)
     pins.digitalWritePin(DigitalPin.P0, 1)
@@ -17,8 +18,7 @@ function GREEN () {
 function GREEN2 () {
     pins.digitalWritePin(DigitalPin.P12, 0)
     pins.digitalWritePin(DigitalPin.P14, 1)
-    for (let Green2 = 0; Green2 <= 10; Green2++) {
-        let Green = 0
+    for (let Green = 0; Green <= 10; Green++) {
         basic.showNumber(10 - Green)
         basic.pause(1000)
     }
@@ -34,8 +34,7 @@ function RED2 () {
 function YELLOW2 () {
     pins.digitalWritePin(DigitalPin.P14, 0)
     pins.digitalWritePin(DigitalPin.P13, 1)
-    for (let Yellow2 = 0; Yellow2 <= 3; Yellow2++) {
-        let Yellow = 0
+    for (let Green = 0; Green <= 3; Green++) {
         basic.showNumber(3 - Yellow)
         basic.pause(1000)
     }
@@ -49,27 +48,35 @@ function YELLOW () {
     }
 }
 basic.forever(function () {
+    if (pins.digitalReadPin(DigitalPin.P2) == 1) {
+        pins.digitalWritePin(DigitalPin.P12, 1)
+    } else if (pins.digitalReadPin(DigitalPin.P12) == 1) {
+        let Green = 0
+        pins.digitalWritePin(DigitalPin.P2, 1)
+        if (Green == 0) {
+            pins.digitalWritePin(DigitalPin.P1, 1)
+            basic.showNumber(3 - Yellow)
+            basic.pause(1000)
+        }
+    }
+    if (pins.digitalReadPin(DigitalPin.P14) == 1) {
+        pins.digitalWritePin(DigitalPin.P0, 1)
+    } else if (pins.digitalReadPin(DigitalPin.P0) == 1) {
+        let Green2 = 0
+        pins.digitalWritePin(DigitalPin.P14, 1)
+        if (Green2 == 0) {
+            let Yellow2 = 0
+            pins.digitalWritePin(DigitalPin.P13, 1)
+            basic.showNumber(3 - Yellow2)
+            basic.pause(1000)
+        }
+    }
+})
+basic.forever(function () {
     GREEN()
     YELLOW()
     RED()
     GREEN2()
     YELLOW2()
     RED2()
-    if (pins.digitalReadPin(DigitalPin.P2) == 1) {
-        pins.digitalWritePin(DigitalPin.P12, 1)
-    } else if (pins.digitalReadPin(DigitalPin.P12) == 1) {
-        pins.digitalWritePin(DigitalPin.P2, 1)
-    }
-    if (pins.digitalReadPin(DigitalPin.P14) == 1) {
-        pins.digitalWritePin(DigitalPin.P0, 1)
-    } else if (pins.digitalReadPin(DigitalPin.P0) == 1) {
-        pins.digitalWritePin(DigitalPin.P14, 1)
-    }
-})
-basic.forever(function () {
-    if (0 == 0) {
-    	
-    } else {
-    	
-    }
 })
