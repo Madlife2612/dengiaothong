@@ -71,6 +71,16 @@ basic.forever(function () {
             basic.pause(1000)
         }
     }
+    if (pins.digitalReadPin(DigitalPin.P1) == 1) {
+        pins.digitalWritePin(DigitalPin.P12, 1)
+    } else if (pins.digitalReadPin(DigitalPin.P1) == 0) {
+        pins.digitalWritePin(DigitalPin.P12, 0)
+    }
+    if (pins.digitalReadPin(DigitalPin.P13) == 1) {
+        pins.digitalWritePin(DigitalPin.P0, 1)
+    } else if (pins.digitalReadPin(DigitalPin.P13) == 0) {
+        pins.digitalWritePin(DigitalPin.P0, 0)
+    }
 })
 basic.forever(function () {
     GREEN()
